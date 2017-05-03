@@ -139,6 +139,10 @@ def user(username):
                            recent=recent, top_tags=top_tags)
 
 
+@app.route('/f1')
+def f1():
+    return render_template('base.html')
+
 
 if __name__ == '__main__':
     app.run()
