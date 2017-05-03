@@ -105,6 +105,7 @@ def index(page=1):
         Post.date.desc()
     ).paginate(page, 10)
     recent, top_tags = sidebar_data()
+
     return render_template('index.html',
                            posts=posts, recent=recent, top_tags=top_tags)
 
@@ -121,9 +122,9 @@ def post(post_id):
                            top_tags=top_tags, tags=tags, comments=comments)
 
 
-@app.route('/tag/<string:tag_title>')  # use tag_id instead tag_title
-def tag(tag_title):
-    tag = Tag.query.filter_by(title=tag_title).first_or_404()
+@app.route('/tag/<tag_id>')
+def tag(tag_id):
+    tag = Tag.query.filter_by(id=tag_id).first_or_404()
     posts = tag.posts.order_by(Post.date.desc()).all()
     recent, top_tags = sidebar_data()
     return render_template('tag.html', tag=tag, posts=posts,
