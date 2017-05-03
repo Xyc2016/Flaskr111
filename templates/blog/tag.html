@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% import 'blog/base.html' as base %}
+{% block title %}
+    Popular Posts
+{% endblock %}
+{% block body %}
+ {% for post in posts %}
+     <a href="{{ url_for('blog.post',post_id=post.id) }}">{{ post.title }}</a>
+     <br>
+     {{ post.text }}
+     <br>
+ {% endfor %}
+
+{% endblock %}

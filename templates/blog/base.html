@@ -13,6 +13,20 @@
 </head>
 <body>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for  category,message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+{% endwith %}
 
 <div class="container">
     <h1 style="color: #c0c0c0">Flaskr</h1>
@@ -25,7 +39,7 @@
     {% for post in posts.items %}
         <div class="row">
             <div class="col-lg-12">
-                <a href="{{ url_for('post',post_id=post.id) }}">
+                <a href="{{ url_for('blog.post',post_id=post.id) }}">
                     <h3>{{ post.title|truncate(10) }}</h3>
                 </a>
             </div>
@@ -84,7 +98,7 @@
     {% for post in recent %}
         <div class="row">
             <div class="col-lg-12">
-                <a href="{{ url_for('post',post_id=post.id) }}"> {{ post.title }} </a>
+                <a href="{{ url_for('blog.post',post_id=post.id) }}"> {{ post.title }} </a>
             </div>
         </div>
     {% endfor %}
@@ -94,11 +108,11 @@
 {% macro top_tags_list(top_tags) %}
     <h3>Top Tags</h3>
     {% for tag in top_tags %}
-    <div class="row">
-    <div class="col-lg-12">
-        <a href="{{ url_for('tag',tag_id= tag[0].id ) }}">{{ tag[0].title }}</a>
-    </div>
-    </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="{{ url_for('blog.tag',tag_id= tag[0].id ) }}">{{ tag[0].title }}</a>
+            </div>
+        </div>
     {% endfor %}
 {% endmacro %}
 

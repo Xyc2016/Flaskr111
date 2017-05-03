@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% import 'base.html' as base %}
+{% extends 'blog/base.html' %}
+{% import 'blog/base.html' as base %}
 {% block title %}
     Post
 {% endblock %}
@@ -12,7 +12,7 @@
     </h4>
     <div class="col-lg-12">
         <h3>New Comment:</h3>
-        <form action="{{ url_for('post',post_id=post.id) }}" method="post">
+        <form action="{{ url_for('blog.post',post_id=post.id) }}" method="post">
             {{ form.hidden_tag() }}
             <div class="form-group">
                 {{ form.title.label }}

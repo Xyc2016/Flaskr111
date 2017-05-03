@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% import 'base.html' as base %}
+{% extends 'blog/base.html' %}
+{% import 'blog/base.html' as base %}
 {% block title %}
     index
 {% endblock %}
@@ -15,5 +15,5 @@
         </div>
     </div>
 
-    {{ base.render_pagination('index',posts) }}
+    {{ base.render_pagination('blog.index',posts) }}
 {% endblock %}
